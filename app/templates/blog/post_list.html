@@ -9,6 +9,10 @@
 </head>
 <body>
     <h1>Post List</h1>
-    <p>{{ posts|safe }}</p>
+    <ul>
+    {% for post in posts %}
+        <li>{{ post.title }}</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
