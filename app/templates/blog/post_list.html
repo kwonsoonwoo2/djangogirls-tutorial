@@ -16,9 +16,11 @@
     </nav>
     <div class="container">
         {% for post in posts %}
-        <div class="card">
+        <div class="card mb-2">
             <div class="card-body">
-                <h5 class="card-title">제목 : {{ post.title }}</h5>
+                <h5 class="card-title">
+                    <a href='/posts/{{ post.pk }}/'>제목 : {{ post.title }}</a>
+                </h5>
                 <h6 class="card-subtitle mb-2 text-muted">글 생성시간 : {{ post.created_date }}</h6>
                 <p class="card-text">글 내용: {{ post.text|linebreaksbr|truncatechars:200 }}</p>
                 <p class="text-right">작성자 : {{ post.author }}</p>
