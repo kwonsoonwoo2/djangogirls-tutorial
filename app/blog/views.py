@@ -51,9 +51,9 @@ def post_create(request):
         text = request.POST['text']
 
         post = Post.objects.create(
-                author=request.user,
-                title=title,
-                text=text,
+            author=request.user,
+            title=title,
+            text=text,
         )
         # next_path = reverse('post-list')
         # return HttpResponseRedirect(next_path)
@@ -62,3 +62,17 @@ def post_create(request):
         return redirect('post-list')
     else:
         return render(request, 'blog/post_create.html')
+
+
+def post_update(request, pk):
+    if request.method == 'POST':
+        title = request.POST['title']
+        text = request.POST['text']
+
+        post = Post.objects.get(pk=pk)
+        # next_path = reverse('post-list')
+        # return HttpResponseRedirect(next_path)
+
+        # URL name으로부터의 reverse과정이 추상화되어있음
+        return redirect('post-list')
+    return render(request, 'blog/post_update.html')
