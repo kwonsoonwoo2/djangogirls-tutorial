@@ -12,7 +12,13 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">DjangoGirls</a>
+        <a href="{% url 'post-list' %}" class="navbar-brand">DjangoGirls</a>
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{% url 'post-create' %}" class="nav-link">+ 글 작성</a>
+            </li>
+        </ul>
     </nav>
     <div class="container mt-2">
         {% block content %}
