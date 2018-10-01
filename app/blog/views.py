@@ -65,14 +65,25 @@ def post_create(request):
 
 
 def post_update(request, pk):
-    if request.method == 'POST':
+    post = Post.objects.get(pk=pk)
+    # pk에 해당하는 Post Instance를 'post'키 값으로 템플릿에 전달
+    if request.method == "POST":
+        # form으로부터 전달된 데이터를 변수에 할당
         title = request.POST['title']
         text = request.POST['text']
 
-        post = Post.objects.get(pk=pk)
-        # next_path = reverse('post-list')
-        # return HttpResponseRedirect(next_path)
+        # 수정할 Post Instance의 속성에
+        # 전달받은 데이터의 값을 할당
+        post.title = title
+        post.text = text
 
-        # URL name으로부터의 reverse과정이 추상화되어있음
-        return redirect('post-list')
-    return render(request, 'blog/post_update.html')
+        # DB에 변경사항을 update
+        post.save()
+
+        # /posts/<pk>/
+        return redirect('post-detail', pk=pk)
+    else:
+        context = {
+            'post': post,
+        }
+        return render(request, 'blog/post_update.html', context)
