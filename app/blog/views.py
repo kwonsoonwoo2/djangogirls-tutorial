@@ -8,6 +8,14 @@ from .models import Post
 
 
 def post_list(request):
+    # 1. request.GET에 'page'값이 전달됨
+    # 2. 전체 Post QuerySet을 사용해서 Paginator인스턴스를 생성, paginator변수에 할당
+    # 3. Paginator인스턴스의 '.page()'메서드를 호출, 호출 인수에 GET요청에 전달된 'page'값을 사용
+    # 4. .page()메서드 호출 결과를 cur_posts변수에 할당 (Page Instance)
+    # 5. posts변수를 템플릿으로 전달
+    # 6. Page Instance는 순회가능한 객체이며, 순회시 각 루프마다 해당 Post Instance를 돌려줌
+    #       post_list.html에서 해당 객체를 순회하도록 템플릿을 구현
+    # 7. 템플릿에 '이전', '<현재페이지 번호>', '다음' 링크를 생성
     posts = Post.objects.order_by('-created_date')
     context = {
         'posts': posts,
