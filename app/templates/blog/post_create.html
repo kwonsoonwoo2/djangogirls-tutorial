@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form action="">
-        <div>
-            title: <input type="text" name="title">
+<h2>새 포스트 작성</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id-title">제목</label>
+            <input id="id-title" type="text" name="title" class="form-control">
         </div>
-        <div>
-            text:
-            <textarea name="text" id="" cols="30" rows="10">
-
-            </textarea>
+        <div class="form-group">
+            <label for="id-text">내용</label>
+            <textarea id="id-text" name="text" cols="30" rows="10" class="form-control"></textarea>
         </div>
-        <button type="submit">글 써</button>
+        <button class="btn btn-primary btn-block" type="submit">글 써</button>
     </form>
 {% endblock %}

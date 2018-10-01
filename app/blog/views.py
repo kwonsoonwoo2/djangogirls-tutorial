@@ -39,4 +39,9 @@ def post_create(request):
     :param request:
     :return:
     """
-    return render(request, 'blog/post_create.html')
+    if request.method == 'POST':
+        # POST요청이 왔을 경우
+        #   새 글을 작성하고 원하는 페이지로 돌아가도록 함
+        pass
+    else:
+        return render(request, 'blog/post_create.html')
